@@ -3,10 +3,12 @@ import { Router, Request, Response} from "express";
 import cors from 'cors';
 
 // Rotas
-import { auth } from "./routes/auth";
+import auth from "./routes/auth";
+import game from "./routes/game";
 
 // Database
 import { sequelize } from "./db";
+import Game from "./models/Game";
 
 const app = express();
 const route = Router();
@@ -20,6 +22,7 @@ route.get("/", (req: Request, res: Response) => {
 
 app.use(route);
 app.use("/auth", auth);
+app.use("/game", game)
 
 sequelize.sync()
 
